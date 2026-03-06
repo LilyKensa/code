@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@import "./modules/editor.css";
+@import "./modules/runner.css";
+@import "./modules/formatter.css";
+
+@theme {
+  --color-midnight-100: hsl(220, 45%, 98%); /* Text on colored elements */
+  --color-midnight-200: hsl(220, 45%, 95%); /* Other normally white text */
+  --color-midnight-300: hsl(220, 25%, 70%); /* Headings and important text */
+  --color-midnight-400: hsl(220, 20%, 60%); /* Normal text */
+  --color-midnight-500: hsl(220, 15%, 40%); /* Icon buttons and channels */
+  --color-midnight-600: hsl(220, 15%, 25%); /* Muted channels/chats and timestamps */
+  --color-midnight-700: hsla(220, 15%, 20%, 1); /* Dark buttons when clicked */
+  --color-midnight-800: hsla(220, 15%, 16%, 1); /* Dark buttons */
+  --color-midnight-900: hsla(220, 15%, 13%, 1); /* Spacing, secondary elements */
+  --color-midnight-950: hsla(220, 15%, 10%, 1); /* Main background color */
+
+  --font-mono: "Spline Sans Mono", ui-monospace;
+  --default-font-family: var(--font-mono);
+}
+
+::selection {
+  @apply bg-blue-400/20;
+}
+
+body {
+  @apply bg-midnight-900 text-midnight-400;
+}
+
+body.resize-hover * {
+  @apply cursor-row-resize;
+}
+
+body.embed .dev-only {
+  @apply hidden;
+}
+
+.title {
+  @apply 
+    text-midnight-500 text-xl font-medium 
+    p-2 
+    flex justify-between;
+
+  .left {
+    .name {
+      @apply text-midnight-300 font-black;
+    }
+
+    .full-name {
+      @apply hidden sm:inline;
+    }
+  }
+
+  .right ol {
+    @apply hidden md:flex;
+
+    li:not(:last-child)::after {
+      content: " · \200B";
+    }
+
+    a {
+      @apply hover:underline cursor-pointer;
+    }
+  }
+}
+
+.split-container {
+  @apply flex flex-col h-[calc(100dvh-44px)];
+}
+
+body.embed .split-container {
+  @apply h-dvh;
+}
+
+.pane {
+  @apply overflow-hidden grow shrink grid;
+}
+
+body:not(.embed) .pane {
+  @apply p-2;
+
+  > * {
+    @apply rounded-lg border-2 border-midnight-800;
+  }
+}
+
+.resizer {
+  @apply h-1 bg-midnight-800 transition duration-200 z-10;
+}
+
+body.resize-hover .resizer {
+  @apply bg-blue-400/80;
+}

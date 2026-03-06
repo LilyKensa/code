@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+.format {
+  &.nan, &.infinity, &.undefined, &.null, &.boolean, &.function-prefix {
+    color: #569cd6;
+  }
+
+  &.key, &.param {
+    color: #9cdcf1;
+  }
+
+  &.string {
+    color: #ce9178;
+  }
+
+  &.symbol, &.circular, &.class, &.instance {
+    color: #c586c0;
+  }
+
+  &.number {
+    color: #b5cea8;
+  }
+
+  &.regex {
+    color: #d16969;
+  }
+
+  &.function {
+    color: #dcdcaa;
+  }
+
+  &.function-prefix, &.custom {
+    @apply italic;
+  }
+}

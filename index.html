@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="./coi-serviceworker.js"></script>
+
+    <style>
+      html {
+        background-color: #16181d;
+      }
+
+      html:not(.loaded) > body {
+        display: none;
+      }
+    </style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+
+    <title>JS Code Runner</title>
+    <meta name="title" content="JS Code Runner">
+    <meta name="description" content="A minimalist, zero-latency code playground designed for the stage.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JS Code Runner">
+    <meta property="og:description" content="Enter a catchy description here that tells Discord users what your site is about.">
+    <meta property="og:image" content="./android-chrome-512x512.png">
+
+    <meta name="theme-color" content="#FFD700">
+  </head>
+  <body class="body-1 body-2 body-3">
+    <div id="root">
+      <div class="title dev-only">
+        <div class="left">
+          <span class="name">
+            J<span class="full-name">ava</span>S<span class="full-name">cript</span> Code Runner
+          </span>
+          <span class="description">
+            <span>
+              <span class="full-name">
+                v<span class="version"></span>
+              </span>
+              by Huey
+            </span>
+          </span>
+        </div>
+        <div class="right">
+          <ol>
+            <li><a href="https://github.com/LilyKensa/code/" target="_blank">Source</a></li>
+            <li><a href="https://onlyfans.com/LilyKensa/" target="_blank">Donate</a></li>
+          </ol>
+        </div>
+      </div>
+      <div class="split-container">
+        <div class="pane top-pane">
+          <div id="editor"></div>
+        </div>
+        
+        <div class="resizer"></div>
+
+        <div class="pane bottom-pane">
+          <div class="bottom-inner">
+            <div class="controls">
+              <button class="run">Run</button>
+              <button class="make-url">
+                <span class="full-name">Show</span>
+                <span>URL</span>
+              </button>
+              <button class="make-embed dev-only">
+                <span class="full-name">Show</span>
+                <span>Embed</span>
+              </button>
+              <button class="dupe-tab dev-only">
+                <span>Dupe</span> 
+                <span class="full-name">Tab</span>
+              </button>
+              <button class="help dev-only">Help</button>
+            </div>
+            <hr />
+            <div class="result">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

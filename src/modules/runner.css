@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+.bottom-inner {
+  @apply bg-midnight-950 px-2 flex flex-col overflow-x-hidden;
+
+  hr {
+    @apply border-2 rounded-full border-midnight-800;
+  }
+}
+
+body.embed .bottom-inner {
+  @apply px-0;
+
+  hr {
+    @apply hidden;
+  }
+}
+
+.controls {
+  @apply py-2 grid grid-cols-5 md:flex gap-1.5;
+}
+
+body.embed .controls {
+  @apply py-0.5 flex;
+}
+
+button {
+  @apply 
+    cursor-pointer
+    bg-midnight-600 active:bg-midnight-700 
+    text-midnight-200 
+    rounded-sm
+    transition-colors duration-200
+    sm:px-2.5 py-0.5
+    outline-none;
+}
+
+body:not(.embed) button {
+  .full-name {
+    @apply hidden sm:inline;
+  }
+}
+
+body.embed button {
+  @apply px-1.5 py-0 text-sm;
+}
+
+.result {
+  @apply overflow-y-scroll grow pb-2 text-midnight-300 cursor-text;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-midnight-500) var(--color-midnight-950);
+
+  .info {
+    @apply text-midnight-200;
+  }
+
+  .debug {
+    @apply text-cyan-300;
+  }
+
+  .warn {
+    @apply text-amber-200;
+  }
+
+  .error {
+    @apply text-rose-400;
+  }
+}
