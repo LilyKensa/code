@@ -65,7 +65,7 @@ ${code}
         }
       }
 
-      const __format = function ${Formatter.format.toString().replace(/Utils\.(\w+)/g, (_, name) =>
+      const __format = function ${Formatter.format.toString().replace(/\w+\.(escapeHtml|getParamNames|isPlain)/g, (_, name) =>
         `(function ${(Utils[name as keyof Utils] as Function).toString()})`
       )};
 

@@ -11,4 +11,7 @@ export default defineConfig({
   define: {
     "import.meta.env.VERSION": JSON.stringify(packageJson.version),
   },
+  optimizeDeps: {
+    include: ["ace-builds", "ace-builds/src-noconflict/mode-javascript"]
+  },
 });

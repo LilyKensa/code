@@ -1,16 +1,19 @@
 import * as ace from "ace-builds";
 import LZString from "lz-string";
 
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-tomorrow_night";
-import "ace-builds/src-noconflict/ext-language_tools";
-
-import workerJavascriptUrl from "ace-builds/src-noconflict/worker-javascript?url";
+import snippetsUrl from "ace-builds/src-noconflict/snippets/javascript?url";
+import modeUrl from "ace-builds/src-noconflict/mode-javascript?url";
+import workerUrl from "ace-builds/src-noconflict/worker-javascript?url";
+import themeUrl from "ace-builds/src-noconflict/theme-tomorrow_night?url";
+import languageToolsUrl from "ace-builds/src-noconflict/ext-language_tools?url";
 
 import LinterWorker from "./linter.worker.js?worker";
 
-ace.config.set("basePath", "/code/node_modules/ace-builds/src-noconflict");
-ace.config.setModuleUrl("ace/mode/javascript_worker", workerJavascriptUrl);
+ace.config.setModuleUrl("ace/snippets/javascript", snippetsUrl);
+ace.config.setModuleUrl("ace/mode/javascript", modeUrl);
+ace.config.setModuleUrl("ace/mode/javascript_worker", workerUrl);
+ace.config.setModuleUrl("ace/theme/tomorrow_night", themeUrl);
+ace.config.setModuleUrl("ace/ext/language_tools", languageToolsUrl);
 
 export class EditorManager {
   static editor: ace.Editor;
@@ -29,8 +32,10 @@ export class EditorManager {
       el.textContent = code;
   }
 
-  static init() {
+  static async init() {
     this.reloadCodeFromUrl();
+
+    await new Promise(resolve => ace.config.loadModule("ace/ext/language_tools", resolve));
 
     this.editor = ace.edit("editor", {
       useWorker: false,
