@@ -8,6 +8,7 @@ import themeUrl from "ace-builds/src-noconflict/theme-tomorrow_night?url";
 import languageToolsUrl from "ace-builds/src-noconflict/ext-language_tools?url";
 
 import LinterWorker from "./linter.worker.js?worker";
+import { Config } from "./config";
 
 ace.config.setModuleUrl("ace/snippets/javascript", snippetsUrl);
 ace.config.setModuleUrl("ace/mode/javascript", modeUrl);
@@ -22,9 +23,17 @@ export class EditorManager {
     let el = document.querySelector<HTMLDivElement>("#editor")!;
 
     let searchParams = new URLSearchParams(window.location.search);
-    let code = searchParams.get("content") || LZString.decompressFromEncodedURIComponent(
-      searchParams.get("c") || ""
-    ) || `console.log("I run JavaScript code!");`;
+
+    let fullText = searchParams.get("content");
+    let compressedText = searchParams.get("c");
+
+    let code: string;
+    if (fullText !== null)
+      code = fullText;
+    else if (compressedText !== null)
+      code = LZString.decompressFromEncodedURIComponent(compressedText);
+    else
+      code = Config.defaultText;
 
     if (this.editor)
       this.editor.session.setValue(code);

@@ -7,6 +7,7 @@ import "./style.css";
 
 import helpHtml from "./help.html?raw";
 import { Utils } from "./modules/utils";
+import { Config } from "./modules/config";
 
 let isIframe = window.parent !== window;
 if (isIframe) document.body.classList.add("embed");
@@ -95,7 +96,7 @@ function makeUrl() {
   url.searchParams.delete("c");
   url.searchParams.delete("content");
 
-  if (code) {
+  if (code !== Config.defaultText) {
     url.searchParams.set("c", compressed);
   }
 
